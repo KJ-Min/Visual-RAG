@@ -1,2 +1,24 @@
+__pycache__/
+
 Document/
-Data/
+
+# Ignore generated data by default.
+Data/**
+
+# Keep one visrag_image faithfulness sample runnable from GitHub.
+!Data/
+!Data/runs/
+Data/runs/**
+!Data/runs/visrag_image/
+!Data/runs/visrag_image/ArxivQA/
+!Data/runs/visrag_image/ArxivQA/predictions.jsonl
+
+!Data/raw/
+Data/raw/**
+!Data/raw/ArxivQA/
+!Data/raw/ArxivQA/images/
+!Data/raw/ArxivQA/images/1508.06771_0.jpg_55e8fb271c.png
+!Data/raw/ArxivQA/images/2106.08476_2.jpg_60f07d5024.png
+!Data/raw/ArxivQA/images/1607.02969_0.jpg_b192dac38a.png
+!Data/raw/ArxivQA/images/1802.03211_0.jpg_f4d57f444a.png
+!Data/raw/ArxivQA/images/2103.12264_2.jpg_81773254bd.png

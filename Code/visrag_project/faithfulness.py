@@ -345,11 +345,21 @@ def _escape_invalid_json_backslashes(value: str) -> str:
 
 
 def _image_data_url(path: str | Path, *, max_edge: int) -> str:
-    path = Path(path)
+    path = _resolve_image_path(path)
     mime_type = mimetypes.guess_type(path.name)[0] or "image/png"
     image_bytes = _resized_image_bytes(path, max_edge=max_edge)
     encoded = base64.b64encode(image_bytes).decode("ascii")
     return f"data:{mime_type};base64,{encoded}"
+
+
+def _resolve_image_path(path: str | Path) -> Path:
+    path = Path(path)
+    if path.exists():
+        return path
+    local_path = Path(__file__).resolve().parents[2] / "Data" / "raw" / "ArxivQA" / "images" / path.name
+    if local_path.exists():
+        return local_path
+    return path
 
 
 def _resized_image_bytes(path: Path, *, max_edge: int) -> bytes:
